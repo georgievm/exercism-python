@@ -1,0 +1,13 @@
+Using Exercism CLI
+=====
+
+Download -> use the link on the exercise's page
+
+Test
+====
+cd C:\Users\t410\Exercism\python\<exercice-folder>
+pytest
+
+Submit
+======
+exercism s <file>

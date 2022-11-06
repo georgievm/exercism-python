@@ -1,0 +1,17 @@
+encoding = ["black",
+    "brown",
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "blue",
+    "violet",
+    "grey",
+    "white"
+]
+
+def color_code(color):
+    return encoding.index(color)
+
+def colors():
+    return encoding
