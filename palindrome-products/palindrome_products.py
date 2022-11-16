@@ -1,37 +1,21 @@
 def largest(min_factor, max_factor):
-    minF, maxF = min_factor, max_factor
-    
-    validate(minF, maxF)
-    
-    for i in range(maxF, minF-1, -1):
-        for j in range(maxF, i-1, -1):
-            if str(i*j) == str(i*j)[::-1] and i*j not in [888888, 861168, 886688]: # sorry, man
-                return (i*j, get_factors(i*j, minF, maxF))
-    
-    return (None, [])
+    return get_palindr(min_factor, max_factor, smallest = False)
 
 def smallest(min_factor, max_factor):
-    minF, maxF = min_factor, max_factor
-    validate(minF, maxF)
-    
-    for i in range(minF, maxF+1):
-        for j in range(i, maxF+1):
-            if str(i*j) == str(i*j)[::-1]:
-                return (i*j, get_factors(i*j, minF, maxF))
-                
-    return (None, [])
+    return get_palindr(min_factor, max_factor)
 
-def validate(min, max):
+def get_palindr(min, max, smallest = True):
     if min > max:
         raise ValueError("min must be <= max")
 
-def get_factors(value, minF, maxF):
+    arr = (min**2, max**2+1) if smallest else (max**2, min**2-1, -1)
     factors = []
-    
-    for i in range(minF, maxF):
-        remainder = value//i 
-        sorted_f = sorted([i, remainder])
-        if all([value % i == 0, minF <= remainder <= maxF, sorted_f not in factors]):
-            factors.append(sorted_f)
-        
-    return factors
+    for prod in range(*arr):
+        s = str(prod)
+        if s == s[::-1]: # if palindrom
+            for i in range(min, max+1):
+                if prod%i == 0 and min <= i <= prod//i <= max:
+                    factors.append([i, prod//i])
+            if factors != []:
+                return (prod, factors)
+    return (None, [])
