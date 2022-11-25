@@ -9,8 +9,6 @@ def slices(series, length):
 
     slices = []
     for i in range(0, len(series)):
-        slice = series[i:i+length]
-        if len(slice) < length:
-            break
+        if len(slice:=series[i:i+length]) < length: break
         slices.append(slice)
     return slices
