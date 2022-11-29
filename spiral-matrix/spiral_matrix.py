@@ -9,7 +9,7 @@ def spiral_matrix(size):
 
     # functions for the [right, down, left, up] directions
     def try_right(num):
-        nonlocal pre_col, pre_row, pre_try, matrix
+        nonlocal pre_col, pre_try
         if pre_col == size-1 or matrix[pre_row][pre_col+1] != placeholder:
             try_down(num)
         else:
@@ -18,7 +18,7 @@ def spiral_matrix(size):
             pre_try = 'right'
 
     def try_down(num):
-        nonlocal pre_col, pre_row, pre_try, matrix
+        nonlocal pre_row, pre_try
         if pre_row == size-1 or matrix[pre_row+1][pre_col] != placeholder:
             try_left(num)
         else:
@@ -27,7 +27,7 @@ def spiral_matrix(size):
             pre_try = 'down'
 
     def try_left(num):
-        nonlocal pre_col, pre_row, pre_try, matrix
+        nonlocal pre_col, pre_try
         if pre_col == 0 or matrix[pre_row][pre_col-1] != placeholder:
             try_up(num)
         else:
@@ -36,7 +36,7 @@ def spiral_matrix(size):
             pre_try = 'left'
 
     def try_up(num):
-        nonlocal pre_col, pre_row, pre_try, matrix
+        nonlocal pre_row, pre_try
         if pre_row == 0 or matrix[pre_row-1][pre_col] != placeholder:
             try_right(num)
         else:
